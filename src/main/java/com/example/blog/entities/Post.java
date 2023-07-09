@@ -1,21 +1,19 @@
 package com.example.blog.entities;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.Instant;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -31,27 +29,36 @@ public class Post {
     private Long id;
 
     @Column(name = "title", nullable = false, unique = true)
-    @Length(min = 5, message = "o título deve conter no mínimo 5 caracteres")
-    @NotEmpty(message = "digite o título da publicação!")
+    @Length(min = 3, message = "o título deve conter no mínimo 3 caracteres")
+    @NotEmpty(message = "a sua publicação  um título")
     private String title;
 
     private String image;
 
     @Column(columnDefinition = "TEXT", nullable = false)
-    @Length(min = 5, message = "o título deve conter no mínimo 5 caracteres")
+    @Length(min = 3, message = "a descrição deve conter no mínimo 3 caracteres")
+    @NotEmpty(message = "a sua publicação precisa de uma descrição")
     private String description;
 
-    @Column(name = "date_created")
     @CreationTimestamp
+    @Column(name = "date_created")
     private Instant dateCreated;
 
-    @Column(name = "date_updated")
     @UpdateTimestamp
+    @Column(name = "date_updated")
     private LocalDateTime dateUpdated;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     @NotNull
     private User user;
+
+    @OneToMany(mappedBy = "post")
+    private Collection<Comment> comments = new ArrayList<>();
+
+    @Setter(AccessLevel.NONE)
+    @Version
+    @Column(name = "version")
+    private Integer version;
 
 }
