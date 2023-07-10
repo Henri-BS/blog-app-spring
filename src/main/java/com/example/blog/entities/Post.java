@@ -5,7 +5,6 @@ import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -56,7 +55,13 @@ public class Post {
     @OneToMany(mappedBy = "post")
     private Collection<Comment> comments = new ArrayList<>();
 
-    @Setter(AccessLevel.NONE)
+    @OneToMany(mappedBy = "post")
+    private Collection<Topic> topics = new ArrayList<>();
+
+
+    @OneToMany(mappedBy = "post")
+    private Collection<PostTag> postTags = new ArrayList<>();
+
     @Version
     @Column(name = "version")
     private Integer version;
