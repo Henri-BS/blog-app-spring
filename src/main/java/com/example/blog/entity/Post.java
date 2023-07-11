@@ -1,4 +1,4 @@
-package com.example.blog.entities;
+package com.example.blog.entity;
 
 
 import lombok.*;
@@ -29,14 +29,14 @@ public class Post {
 
     @Column(name = "title", nullable = false, unique = true)
     @Length(min = 3, message = "o título deve conter no mínimo 3 caracteres")
-    @NotEmpty(message = "a sua publicação  um título")
+    @NotEmpty(message = "o título da sua publicação não pode ficar vazio")
     private String title;
 
     private String image;
 
     @Column(columnDefinition = "TEXT", nullable = false)
-    @Length(min = 3, message = "a descrição deve conter no mínimo 3 caracteres")
-    @NotEmpty(message = "a sua publicação precisa de uma descrição")
+    @Length(min = 15, message = "a descrição deve conter no mínimo 15 caracteres")
+    @NotEmpty(message = "a descrição da sua publicação não pode ficar vazio")
     private String description;
 
     @CreationTimestamp
@@ -63,7 +63,6 @@ public class Post {
     private Collection<PostTag> postTags = new ArrayList<>();
 
     @Version
-    @Column(name = "version")
     private Integer version;
 
 }

@@ -1,4 +1,4 @@
-package com.example.blog.entities;
+package com.example.blog.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,7 +29,6 @@ public class Answer {
     private Comment answerFrom;
 
     @Version
-    @Column(name = "version")
     private Integer version;
 
 }

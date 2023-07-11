@@ -1,9 +1,15 @@
-package com.example.blog.entities;
+package com.example.blog.entity;
+
+import lombok.*;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Collection;
 
+
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "tb_post_tag")
 public class PostTag {
@@ -19,4 +25,5 @@ public class PostTag {
     @ManyToOne
     @JoinColumn(name = "tag_id")
     private Tag tag;
+
 }

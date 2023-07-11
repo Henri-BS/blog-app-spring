@@ -1,4 +1,4 @@
-package com.example.blog.entities;
+package com.example.blog.entity;
 
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
@@ -21,7 +21,7 @@ public class Topic {
 
     @Column(name = "title", columnDefinition = "TEXT", nullable = false)
     @Length(min = 3, message = "o tópico deve conter no mínimo 3 caracteres")
-    @NotEmpty(message = "o título não pode ficar vazio")
+    @NotEmpty(message = "o título do tópico não pode ficar vazio")
     private String title;
 
     @Column(name = "body", columnDefinition = "TEXT", nullable = false)
