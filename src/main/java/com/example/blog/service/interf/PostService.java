@@ -9,4 +9,6 @@ public interface PostService {
     PostDto findById(Long id);
 
     Page<PostDto> findAllPosts(String title, Pageable pageable);
+
+    PostDto savePost(PostDto dto);
 }
