@@ -2,13 +2,18 @@ package com.example.blog.dto;
 
 import com.example.blog.entity.Post;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.Instant;
 import java.time.LocalDateTime;
 
-@Data
+@NoArgsConstructor
+@Getter
+@Setter
 public class PostDto implements Serializable {
 
     @Serial

@@ -3,6 +3,7 @@ package com.example.blog.service.impl;
 import com.example.blog.dto.PostDto;
 import com.example.blog.entity.Post;
 import com.example.blog.entity.User;
+import com.example.blog.repository.CommentRepository;
 import com.example.blog.repository.PostRepository;
 import com.example.blog.repository.UserRepository;
 import com.example.blog.service.interf.PostService;
@@ -20,6 +21,9 @@ public class PostServiceImpl implements PostService {
     private PostRepository postRepository;
 
     @Autowired
+    private CommentRepository commentRepository;
+
+    @Autowired
     private UserRepository userRepository;
 
     @Override
@@ -31,6 +35,14 @@ public class PostServiceImpl implements PostService {
     @Override
     public Page<PostDto> findAllPosts(String title, Pageable pageable) {
         Page<Post> page = postRepository.findAllPostsIgnoreAllCase(title, pageable);
+
+        String image = "https://apaturkey.com/assets/images/picture.png";
+        for (Post post : page) {
+            if(post.getImage() == null) {
+                post.setImage(image);
+            }
+        }
+
         return page.map(PostDto::new);
     }
 
@@ -44,5 +56,22 @@ public class PostServiceImpl implements PostService {
         add.setImage(dto.getImage());
         add.setUser(user);
         return new PostDto(postRepository.saveAndFlush(add));
+    }
+
+    @Override
+    public PostDto updatePost(PostDto dto) {
+        Post edit = postRepository.findById(dto.getId()).orElseThrow();
+
+        edit.setId(edit.getId());
+        edit.setTitle(dto.getTitle());
+        edit.setDescription(dto.getDescription());
+        edit.setImage(dto.getImage());
+        return new PostDto(postRepository.save(edit));
+    }
+
+    @Override
+    public void deletePostByUser(User user) {
+        this.commentRepository.deleteAllByUser(user);
+        this.postRepository.deleteByUser(user);
     }
 }

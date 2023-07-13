@@ -1,6 +1,7 @@
 package com.example.blog.controller;
 
 import com.example.blog.dto.PostDto;
+import com.example.blog.entity.User;
 import com.example.blog.service.interf.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -28,9 +29,21 @@ public class PostController {
         return ResponseEntity.ok(page);
     }
 
-    @PostMapping("/add")
+    @PostMapping("/save")
     public ResponseEntity<PostDto> savePost(@RequestBody PostDto dto) {
         PostDto add = postService.savePost(dto);
         return new ResponseEntity<>(add, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<PostDto> updatePost(@RequestBody PostDto dto) {
+        PostDto edit = postService.updatePost(dto);
+        return new ResponseEntity<>(edit, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete/{user}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deletePostByUser(@PathVariable User user) {
+        this.postService.deletePostByUser(user);
     }
 }
