@@ -7,7 +7,6 @@ import lombok.*;
 import org.hibernate.validator.constraints.Length;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 
@@ -38,11 +37,11 @@ public class User {
 
     private String image;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Post> posts = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user")
-    private Collection<Comment> comments = new ArrayList<>();
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Comment> comments = new ArrayList<>();
 
     @Version
     private Integer version;

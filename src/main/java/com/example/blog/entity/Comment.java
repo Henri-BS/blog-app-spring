@@ -41,10 +41,10 @@ public class Comment {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "answerTo")
+    @OneToMany(mappedBy = "answerTo", cascade = CascadeType.ALL)
     private Collection<Answer> answerTo;
 
-    @OneToMany(mappedBy = "answerFrom")
+    @OneToMany(mappedBy = "answerFrom", cascade = CascadeType.ALL)
     private Collection<Answer> answerFrom;
 
     @Version

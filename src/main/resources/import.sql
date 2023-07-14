@@ -5,6 +5,6 @@ INSERT INTO tb_comment(body, post_id, user_id, version) VALUES('Descrição do m
 INSERT INTO tb_comment(body, post_id, user_id, version) VALUES('Minha resposta de um comentário', 1, 2, 1);
 INSERT INTO tb_answer(answer_to, answer_from, version) VALUES(1, 2, 1)
 
-INSERT INTO tb_topic (title, body, post_id) VALUES ('Título do meu tópico', 'Descrição do meu tópico', 1);
+INSERT INTO tb_topic (title, body, post_id, version) VALUES ('Título do meu tópico', 'Descrição do meu tópico', 1, 1);
 INSERT INTO tb_tag (tag_name, category) VALUES ('minha tag', 'minha categoria');
 INSERT INTO tb_post_tag(post_id, tag_id) VALUES (1, 1)

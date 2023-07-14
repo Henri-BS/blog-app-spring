@@ -3,7 +3,6 @@ package com.example.blog.service.impl;
 import com.example.blog.dto.PostDto;
 import com.example.blog.entity.Post;
 import com.example.blog.entity.User;
-import com.example.blog.repository.CommentRepository;
 import com.example.blog.repository.PostRepository;
 import com.example.blog.repository.UserRepository;
 import com.example.blog.service.interf.PostService;
@@ -19,9 +18,6 @@ public class PostServiceImpl implements PostService {
 
     @Autowired
     private PostRepository postRepository;
-
-    @Autowired
-    private CommentRepository commentRepository;
 
     @Autowired
     private UserRepository userRepository;
@@ -71,7 +67,6 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public void deletePostByUser(User user) {
-        this.commentRepository.deleteAllByUser(user);
         this.postRepository.deleteByUser(user);
     }
 }
