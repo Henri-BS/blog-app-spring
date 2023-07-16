@@ -7,6 +7,7 @@ import com.example.blog.service.interf.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,4 +29,11 @@ public class CommentController {
         CommentDto find = commentService.findCommentById(id);
         return ResponseEntity.ok(find);
     }
+
+    @PostMapping("/save")
+    public ResponseEntity<CommentDto> saveComment(@RequestBody CommentDto dto) {
+        CommentDto add = commentService.saveComment(dto);
+        return  new ResponseEntity<>(add, HttpStatus.CREATED);
+    }
+
 }
