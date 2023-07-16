@@ -50,4 +50,17 @@ public class CommentServiceImpl implements CommentService {
         add.setUser(user);
         return new CommentDto(commentRepository.saveAndFlush(add));
     }
+
+    @Override
+    public CommentDto updateComment(CommentDto dto) {
+        Comment edit = commentRepository.findById(dto.getId()).orElseThrow();
+        edit.setBody(dto.getBody());
+        edit.setImages(dto.getImages());
+        return new CommentDto(commentRepository.save(edit));
+    }
+
+    @Override
+    public void deleteComment(Long id) {
+        this.commentRepository.deleteById(id);
+    }
 }
