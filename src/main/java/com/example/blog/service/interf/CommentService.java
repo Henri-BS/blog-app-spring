@@ -8,7 +8,6 @@ import org.springframework.data.domain.Pageable;
 
 public interface CommentService {
 
-
     Page<CommentDto> findCommentsByPost(Post post, Pageable pageable);
 
     CommentDto findCommentById(Long id);
