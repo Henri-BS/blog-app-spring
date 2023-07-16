@@ -5,6 +5,7 @@ import com.example.blog.service.interf.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,5 +26,11 @@ public class UserController {
     public ResponseEntity<UserDto> findUserById(@PathVariable Long id) {
      UserDto find = userService.findUserById(id);
      return ResponseEntity.ok(find);
+    }
+
+    @PostMapping("/save")
+    public ResponseEntity<UserDto> saveUser(@RequestBody UserDto dto) {
+        UserDto add = userService.saveUser(dto);
+        return new ResponseEntity<>(add, HttpStatus.CREATED);
     }
 }

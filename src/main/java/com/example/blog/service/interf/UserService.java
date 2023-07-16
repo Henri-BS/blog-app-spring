@@ -9,4 +9,6 @@ public interface UserService {
     Page<UserDto> findAllUsers(String userName, Pageable pageable);
 
     UserDto findUserById(Long id);
+
+    UserDto saveUser(UserDto dto);
 }
