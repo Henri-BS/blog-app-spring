@@ -19,7 +19,7 @@ public class AnswerDto implements Serializable {
     public AnswerDto(Answer answer) {
         id = answer.getId();
         answerTo = new CommentDto(answer.getAnswerTo());
-        answerFrom = new CommentDto(answer.getAnswerFrom());
+        answerFrom = new CommentDto(answer.getComment());
 
     }
 }

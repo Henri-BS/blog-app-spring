@@ -25,8 +25,8 @@ public class Answer {
     private Comment answerTo;
 
     @ManyToOne
-    @JoinColumn(name = "answer_from")
-    private Comment answerFrom;
+    @JoinColumn(name = "comment")
+    private Comment comment;
 
     @Version
     private Integer version;

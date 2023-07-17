@@ -44,7 +44,7 @@ public class Comment {
     @OneToMany(mappedBy = "answerTo", cascade = CascadeType.ALL)
     private Collection<Answer> answerTo;
 
-    @OneToMany(mappedBy = "answerFrom", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "comment", cascade = CascadeType.ALL)
     private Collection<Answer> answerFrom;
 
     @Version
