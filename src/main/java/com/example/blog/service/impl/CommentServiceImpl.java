@@ -45,7 +45,7 @@ public class CommentServiceImpl implements CommentService {
         Post post = postRepository.findById(dto.getPost().getId()).orElseThrow();;
         Comment add = new Comment();
         add.setBody(dto.getBody());
-        add.setImages(dto.getImages());
+        add.setImage(dto.getImage());
         add.setPost(post);
         add.setUser(user);
         return new CommentDto(commentRepository.saveAndFlush(add));
@@ -55,7 +55,7 @@ public class CommentServiceImpl implements CommentService {
     public CommentDto updateComment(CommentDto dto) {
         Comment edit = commentRepository.findById(dto.getId()).orElseThrow();
         edit.setBody(dto.getBody());
-        edit.setImages(dto.getImages());
+        edit.setImage(dto.getImage());
         return new CommentDto(commentRepository.save(edit));
     }
 

@@ -8,6 +8,7 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -30,8 +31,7 @@ public class Comment {
     @NotEmpty(message = "o seu comemntário não pode ficar vazio")
     private String body;
 
-    @ElementCollection
-    private List<String> images;
+    private String image;
 
     @ManyToOne
     @JoinColumn(name = "post_id")
@@ -41,13 +41,7 @@ public class Comment {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "answerTo", cascade = CascadeType.ALL)
-    private Collection<Answer> answerTo;
 
     @OneToMany(mappedBy = "comment", cascade = CascadeType.ALL)
-    private Collection<Answer> answerFrom;
-
-    @Version
-    private Integer version;
-
+    private List<Answer> answerFrom = new ArrayList<>();
 }

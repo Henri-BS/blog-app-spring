@@ -7,10 +7,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query("SELECT obj FROM User obj WHERE UPPER(obj.userName) " +
             "LIKE UPPER(CONCAT('%', ?1, '%')) ORDER BY (obj.userName) DESC")
     Page<User> findAllUsers(String userName, Pageable pageable);
+
+    User findByUserName(String userName);
 }

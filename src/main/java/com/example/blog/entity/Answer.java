@@ -4,8 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import java.util.ArrayList;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,15 +24,18 @@ public class Answer {
     @Column(name = "answer_id")
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "answer_to")
-    private Comment answerTo;
+
+    private String body;
+
+    private String image;
 
     @ManyToOne
-    @JoinColumn(name = "comment")
+    @JoinColumn(name = "comment_id")
     private Comment comment;
 
-    @Version
-    private Integer version;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
 }

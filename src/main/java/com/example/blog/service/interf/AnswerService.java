@@ -9,4 +9,10 @@ public interface AnswerService {
     Page<AnswerDto> findAllAnswerByComment(Comment comment, Pageable pageable);
 
     AnswerDto findAnswerById(Long id);
+
+    AnswerDto saveAnswer(AnswerDto dto);
+
+    AnswerDto updateAnswer(AnswerDto dto);
+
+    void deleteAnswer(Long id);
 }

@@ -41,7 +41,7 @@ public class PostController {
         return new ResponseEntity<>(edit, HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/{user}")
+    @DeleteMapping("/delete/{userId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deletePostByUser(@PathVariable User user) {
         this.postService.deletePostByUser(user);

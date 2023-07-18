@@ -2,11 +2,17 @@ package com.example.blog.dto;
 
 import com.example.blog.entity.User;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.io.Serial;
 import java.io.Serializable;
 
-@Data
+
+@NoArgsConstructor
+@Getter
+@Setter
 public class UserDto implements Serializable {
 
     @Serial
