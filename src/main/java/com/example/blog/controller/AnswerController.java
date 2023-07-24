@@ -42,6 +42,7 @@ public class AnswerController {
     }
 
     @DeleteMapping("/delete/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteAnswer(@PathVariable Long id) {
         this.answerService.deleteAnswer(id);
     }

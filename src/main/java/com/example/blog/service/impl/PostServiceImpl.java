@@ -22,6 +22,15 @@ public class PostServiceImpl implements PostService {
     @Autowired
     private UserRepository userRepository;
 
+    public void defaultPost(){
+        String image = "https://apaturkey.com/assets/images/picture.png";
+        for (Post post : postRepository.findAll()) {
+            if(post.getImage() == null) {
+                post.setImage(image);
+            }
+        }
+    }
+
     @Override
     public PostDto findById(Long id){
         Post find = postRepository.findById(id).orElseThrow();
@@ -32,12 +41,7 @@ public class PostServiceImpl implements PostService {
     public Page<PostDto> findAllPosts(String title, Pageable pageable) {
         Page<Post> page = postRepository.findAllPostsIgnoreAllCase(title, pageable);
 
-        String image = "https://apaturkey.com/assets/images/picture.png";
-        for (Post post : page) {
-            if(post.getImage() == null) {
-                post.setImage(image);
-            }
-        }
+
 
         return page.map(PostDto::new);
     }
