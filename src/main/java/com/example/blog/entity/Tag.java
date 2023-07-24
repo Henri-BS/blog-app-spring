@@ -31,7 +31,4 @@ public class Tag {
     @OneToMany(mappedBy = "tag")
     private Collection<PostTag> postTag = new ArrayList<>();
 
-    @Version
-    private Integer version;
-
 }

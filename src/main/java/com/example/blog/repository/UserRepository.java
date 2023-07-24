@@ -16,5 +16,4 @@ public interface UserRepository extends JpaRepository<User, Long> {
             "LIKE UPPER(CONCAT('%', ?1, '%')) ORDER BY (obj.userName) DESC")
     Page<User> findAllUsers(String userName, Pageable pageable);
 
-    User findByUserName(String userName);
 }

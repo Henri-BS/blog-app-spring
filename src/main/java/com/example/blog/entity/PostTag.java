@@ -11,6 +11,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "tb_post_tag")
 public class PostTag {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "post_tag_id")
