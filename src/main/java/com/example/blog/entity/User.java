@@ -31,7 +31,7 @@ public class User {
     private String password;
 
     @Column(name="user_name", nullable = false, unique = true)
-    @Length(min = 3, max = 80, message = "seu nome de usuário deve ter no mínimo 5 e no máximo 80 caracteres")
+    @Length(min = 3, max = 80, message = "seu nome de usuário deve ter entre 5 e 80 caracteres")
     @NotEmpty(message = "o seu nome de usuário não pode ficar vazio")
     private String userName;
 
